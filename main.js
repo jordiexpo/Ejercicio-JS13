@@ -3,7 +3,13 @@ function playGame(playerChoice) {
  const choices = ['🪨', '📄', '🗡️'];
  
  const computerChoice = choices[Math.floor(Math.random() * 3)];
-
+ 
+ const userPointsElement = document.getElementById('userpoints');
+ const computerPointsElement = document.getElementById('computerpoints');
+ 
+ let userPoints = parseInt(userPointsElement.textContent);
+ let computerPoints = parseInt(computerPointsElement.textContent);
+ 
  let result = '';
  if (playerChoice === computerChoice) {
      result = 'Empate';
@@ -12,11 +18,14 @@ function playGame(playerChoice) {
      (playerChoice === '📄' && computerChoice === '🪨') ||
      (playerChoice === '🗡️' && computerChoice === '📄')
  ) {
-     result = '¡Ganaste!';
+     result = 'YOU WIN! 🎉';
+     userPoints++;
  } else {
-     result = 'Perdiste';
+     result = 'YOU LOSE! 💀';
+     computerPoints++;
  }
- 
+ userPointsElement.textContent = userPoints;
+ computerPointsElement.textContent = computerPoints;
  
  document.getElementById('result').innerHTML = `
      Elegiste: ${playerChoice}<br>
